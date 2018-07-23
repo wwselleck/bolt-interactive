@@ -1,0 +1,9 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "lib": ["es5", "es6", "es7"],
+        "moduleResolution": "node",
+        "target": "es6",
+        "outDir": "dist"
+    }
+}

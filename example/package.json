@@ -1,0 +1,17 @@
+{
+  "private": true,
+  "name": "@wwselleck/bolt-interactive-example",
+  "scripts": {
+    "run": "npm link @wwselleck/bolt-interactive && $(npm bin)/bolti"
+  },
+  "bolt": {
+    "workspaces": [
+      "packages/*"
+    ]
+  },
+  "dependencies": {
+    "@wwselleck/bolt-interactive": "file:///Users/weston/dev/bolt-interactive",
+    "bolt": "^0.20.7",
+    "react": "^15.6.1"
+  }
+}
