@@ -2,11 +2,7 @@
   "name": "foo-workspace-package",
   "version": "1.0.0",
   "license": "MIT",
-  "scripts": {
-    "preinstall": "echo preinstall",
-    "postinstall": "echo postinstall",
-    "prepublish": "echo prepublish"
-  },
+  "scripts": {},
   "bolt": {
     "workspaces": [
       "packages/*"
@@ -14,6 +10,7 @@
   },
   "dependencies": {
     "bar-workspace-package": "^1.0.0",
-    "react": "^15.6.1"
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1"
   }
 }

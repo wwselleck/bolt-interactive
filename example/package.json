@@ -12,6 +12,8 @@
   "dependencies": {
     "@wwselleck/bolt-interactive": "file:///Users/weston/dev/bolt-interactive",
     "bolt": "^0.20.7",
-    "react": "^15.6.1"
+    "global": "^4.3.2",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1"
   }
 }

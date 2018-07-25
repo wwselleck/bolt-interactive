@@ -1,6 +1,6 @@
 {
   "name": "@wwselleck/bolt-interactive",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
@@ -11,6 +11,9 @@
   "bin": {
     "bolti": "./dist/index.js"
   },
+  "files": [
+    "dist"
+  ],
   "dependencies": {
     "fuzzy": "^0.1.3",
     "inquirer": "^6.0.0",
