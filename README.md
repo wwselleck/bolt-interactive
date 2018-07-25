@@ -1,3 +1,5 @@
+> Currently on version 0.1.0 and not the world's most thorougly tested package, but seems to work well for the features that are added so far (adding, removing, and updating packages). Use at yo own risk, though.
+
 # bolt-interactive
 An interactive CLI tool for managing your [bolt](https://github.com/boltpkg/bolt) projects.
 
