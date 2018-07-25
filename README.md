@@ -3,7 +3,7 @@ An interactive CLI tool for managing your [bolt](https://github.com/boltpkg/bolt
 
 ## Get Started
 ```
-yarn add -g @wwselleck/bolt-interactive
+yarn add global @wwselleck/bolt-interactive
 bolti
 ```
 ![](./docs/example.gif)
