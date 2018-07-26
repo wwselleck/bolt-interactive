@@ -6,18 +6,16 @@ import {
 } from "bolt";
 import inquirer = require("inquirer");
 import { configDependencyType, toDependency } from "../../bolt";
+import runPackagesInputPrompt from '../packagesInput';
 import runScopeSelectPrompt, { ScopeType } from "../scopeSelect";
 
 export default async function runRemovePrompt() {
   const scope = await runScopeSelectPrompt();
-  const answers = await inquirer.prompt([
-    {
-      name: "packages",
-      type: "input",
-      message: "What package(s) to remove?"
-    }
-  ]);
-  const packages = answers.packages.split(" ");
+  const packagesInput = await runPackagesInputPrompt({
+    message: 'What package(s) to remove?'
+  });
+
+  const packages: string[] = packagesInput.split(" ");
 
   if (scope.type === ScopeType.PROJECT) {
     await projectRemove({
