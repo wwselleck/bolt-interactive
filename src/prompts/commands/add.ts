@@ -1,6 +1,7 @@
 import { getWorkspaces, projectAdd, Workspace, workspaceAdd } from "bolt";
 import inquirer = require("inquirer");
 import { configDependencyType, toDependency } from "../../bolt";
+import runPackagesInputPrompt from '../packagesInput';
 import runScopeSelectPrompt, { ScopeType } from "../scopeSelect";
 
 const TypeChoices = Object.keys(configDependencyType).map(
@@ -9,28 +10,23 @@ const TypeChoices = Object.keys(configDependencyType).map(
 
 export default async function runAddPrompt() {
   const scope = await runScopeSelectPrompt();
-  const answers = await inquirer.prompt([
+  const packagesInput = await runPackagesInputPrompt({
+    message: 'What package(s) to install?'
+  });
+  const depType = (await inquirer.prompt([
     {
-      name: "packages",
-      type: "input",
-      message: "What package(s) to install?",
-      validate: input => {
-        return input !== "" || "Please enter at least one package";
-      }
-    },
-    {
-      name: "type",
+      name: "depType",
       type: "list",
       choices: TypeChoices
     }
-  ]);
+  ])).depType;
 
-  const packages = answers.packages.split(" ");
+  const packages = packagesInput.split(" ");
 
   if (scope.type === ScopeType.PROJECT) {
     await projectAdd({
       deps: packages.map(toDependency),
-      type: answers.type
+      type: depType
     });
   } else if (scope.type === ScopeType.ALL) {
     // bolt ws add isn't implemented yet, do bolt w for each workspace
@@ -39,7 +35,7 @@ export default async function runAddPrompt() {
       await workspaceAdd({
         pkgName: w.name,
         deps: packages.map(toDependency),
-        type: answers.type
+        type: depType
       });
     }
   } else if (scope.type === ScopeType.SELECT) {
@@ -47,7 +43,7 @@ export default async function runAddPrompt() {
       await workspaceAdd({
         pkgName: w.name,
         deps: packages.map(toDependency),
-        type: answers.type
+        type: depType
       });
     }
   }

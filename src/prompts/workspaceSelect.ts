@@ -28,7 +28,10 @@ export default async function runWorkspacesSelectPrompt(): Promise<
           })
           .map(e => e.original);
         return results;
-      }
+      },
+      validate: (answer) => {
+        return answer.length !== 0 || 'Please select at least one workspace';
+      },
     }
   ]);
   return answers.workspaces;

@@ -5,6 +5,5 @@
   "scripts": {
   },
   "dependencies": {
-    "bar-workspace-package": "^1.0.0"
   }
 }

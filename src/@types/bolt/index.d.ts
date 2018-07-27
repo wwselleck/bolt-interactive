@@ -60,7 +60,7 @@ declare module "bolt" {
    * Workspaces
    */
   export interface WorkspacesRemoveOptions {
-    deps: Dependency[];
+    deps: string[];
     filterOpts: object;
   }
   export function workspacesRemove(options: WorkspacesRemoveOptions);
