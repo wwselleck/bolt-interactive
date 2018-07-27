@@ -2,6 +2,7 @@ import { Workspace } from "bolt";
 import inquirer = require("inquirer");
 import runAddPrompt from "./commands/add";
 import runRemovePrompt from "./commands/remove";
+import runScriptRunPrompt from "./commands/run";
 import runUpgradePrompt from "./commands/upgrade";
 import Prompt from "./Prompt";
 
@@ -17,6 +18,10 @@ const CommandChoices = [
   {
     name: "Upgrade dependencies",
     value: runUpgradePrompt
+  },
+  {
+    name: "Run script",
+    value: runScriptRunPrompt
   }
 ];
 

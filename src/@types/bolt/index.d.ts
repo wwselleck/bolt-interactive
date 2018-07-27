@@ -1,4 +1,13 @@
 declare module "bolt" {
+  export namespace PackageJSON {
+    export interface Scripts {
+      [key: string]: string;
+    }
+    export interface PackageJSON {
+      scripts: Scripts;
+    }
+  }
+
   export enum configDependencyType {
     DEPENDENCIES = "dependencies",
     DEV_DEPENDENCIES = "devDependencies",
@@ -12,6 +21,9 @@ declare module "bolt" {
   }
   export function getWorkspaces(): Workspace[];
   export function getDependencyGraph(): any;
+  export function getProject(): {
+    config: PackageJSON.PackageJSON;
+  };
 
   export interface Dependency {
     name: string;
