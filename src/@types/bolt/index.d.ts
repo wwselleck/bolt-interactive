@@ -3,9 +3,26 @@ declare module "bolt" {
     export interface Scripts {
       [key: string]: string;
     }
-    export interface PackageJSON {
-      scripts: Scripts;
+
+    export interface Dependencies {
+      [key: string]: string;
     }
+
+    export interface PackageJSON {
+      name: string;
+      version: string;
+      scripts: Scripts;
+      dependencies: Dependencies;
+    }
+  }
+
+  export type Args = string[];
+
+  export interface FilterOpts {
+    only?: string;
+    ignore?: string;
+    onlyFs?: string;
+    ignoreFs?: string;
   }
 
   export enum configDependencyType {
@@ -18,7 +35,9 @@ declare module "bolt" {
   export interface Workspace {
     dir: string;
     name: string;
+    config: PackageJSON.PackageJSON;
   }
+
   export function getWorkspaces(): Workspace[];
   export function getDependencyGraph(): any;
   export function getProject(): {
@@ -47,14 +66,22 @@ declare module "bolt" {
     deps: Dependency[];
     type: configDependencyType;
   }
-  export function workspaceAdd(options: WorkspaceAddOptions);
+  export function workspaceAdd(options: WorkspaceAddOptions): void;
 
   export interface WorkspaceRemoveOptions {
     cwd?: string;
     pkgName: string;
     deps: string[];
   }
-  export function workspaceRemove(options: WorkspaceRemoveOptions);
+  export function workspaceRemove(options: WorkspaceRemoveOptions): void;
+
+  export interface WorkspaceRunOptions {
+    cwd?: string;
+    pkgName: string;
+    script: string;
+    scriptArgs: Args;
+  }
+  export function workspaceRun(options: WorkspaceRunOptions): void;
 
   /**
    * Workspaces
@@ -63,14 +90,22 @@ declare module "bolt" {
     deps: string[];
     filterOpts: object;
   }
-  export function workspacesRemove(options: WorkspacesRemoveOptions);
+  export function workspacesRemove(options: WorkspacesRemoveOptions): void;
 
   export interface WorkspacesUpgradeOptions {
     deps: string[];
     filterOpts: object;
     flags: Flags;
   }
-  export function workspacesUpgrade(options: WorkspacesUpgradeOptions);
+  export function workspacesUpgrade(options: WorkspacesUpgradeOptions): void;
+
+  export interface WorkspacesRunOptions {
+    cwd?: string;
+    script: string;
+    scriptArgs: Args;
+    filterOpts: FilterOpts;
+  }
+  export function workspacesRun(options: WorkspacesRunOptions): void;
 
   /**
    * Project
@@ -79,16 +114,23 @@ declare module "bolt" {
     deps: Dependency[];
     type: configDependencyType;
   }
-  export function projectAdd(options: ProjectAddOptions);
+  export function projectAdd(options: ProjectAddOptions): void;
 
   export interface ProjectRemoveOptions {
     deps: string[];
   }
-  export function projectRemove(options: ProjectRemoveOptions);
+  export function projectRemove(options: ProjectRemoveOptions): void;
 
   export interface ProjectUpgradeOptions {
     deps: Dependency[];
     flags: string[];
   }
-  export function projectUpgrade(options: ProjectUpgradeOptions);
+  export function projectUpgrade(options: ProjectUpgradeOptions): void;
+
+  export interface ProjectRunOptions {
+    cwd?: string;
+    script: string;
+    scriptArgs: Args;
+  }
+  export function projectRun(options: ProjectRunOptions): void;
 }

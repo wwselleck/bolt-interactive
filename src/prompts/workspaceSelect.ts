@@ -20,7 +20,7 @@ export default async function runWorkspacesSelectPrompt(): Promise<
       name: "workspaces",
       message: "Select workspaces",
       searchable: true,
-      async source(answersSoFar, input = "") {
+      async source(_: any, input = "") {
         input = input || "";
         const results = fuzzy
           .filter(input, choices, {
@@ -29,9 +29,9 @@ export default async function runWorkspacesSelectPrompt(): Promise<
           .map(e => e.original);
         return results;
       },
-      validate: (answer) => {
-        return answer.length !== 0 || 'Please select at least one workspace';
-      },
+      validate: (answer: Workspace[]) => {
+        return answer.length !== 0 || "Please select at least one workspace";
+      }
     }
   ]);
   return answers.workspaces;

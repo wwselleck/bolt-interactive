@@ -6,6 +6,7 @@
   "scripts": {
     "build": "tsc",
     "example": "npm run build && npm link && (cd example && npm run run)",
+    "lint": "tslint src/**/*.ts",
     "tslint-check": "tslint-config-prettier-check ./tslint.json"
   },
   "bin": {
@@ -17,16 +18,17 @@
   "dependencies": {
     "fuzzy": "^0.1.3",
     "inquirer": "^6.0.0",
-    "inquirer-checkbox-plus-prompt": "^1.0.1"
+    "inquirer-checkbox-plus-prompt": "^1.0.1",
+    "winston": "^3.0.0"
   },
   "devDependencies": {
     "@types/node": "^10.5.1",
     "bolt": "^0.20.7",
     "prettier": "1.13.7",
     "ts-node": "^7.0.0",
-    "typescript": "^2.9.2",
     "tslint": "^5.11.0",
-    "tslint-config-prettier": "^1.14.0"
+    "tslint-config-prettier": "^1.14.0",
+    "typescript": "^2.9.2"
   },
   "peerDependencies": {
     "bolt": "^0.20.0"

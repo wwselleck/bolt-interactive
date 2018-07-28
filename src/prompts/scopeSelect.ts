@@ -1,4 +1,4 @@
-import { Workspace } from "bolt";
+import { getWorkspaces, Workspace } from "bolt";
 import inquirer = require("inquirer");
 import runWorkspacesSelectPrompt from "./workspaceSelect";
 
@@ -8,10 +8,21 @@ export enum ScopeType {
   PROJECT = "PROJECT"
 }
 
-export interface Scope {
-  type: ScopeType;
-  workspaces?: Workspace[];
+export interface ProjectScope {
+  kind: ScopeType.PROJECT;
 }
+
+export interface AllWorkspacesScope {
+  kind: ScopeType.ALL;
+  workspaces: Workspace[];
+}
+
+export interface SelectWorkspacesScope {
+  kind: ScopeType.SELECT;
+  workspaces: Workspace[];
+}
+
+export type Scope = ProjectScope | AllWorkspacesScope | SelectWorkspacesScope;
 
 const ScopeChoices: Array<{ name: string; value: ScopeType }> = [
   {
@@ -50,13 +61,20 @@ export default async function runScopeSelectPrompt(
     }
   ])).scope;
 
-  if (selectedScopeType === ScopeType.SELECT) {
-    const workspaces = await runWorkspacesSelectPrompt();
-    return {
-      type: selectedScopeType,
-      workspaces
-    };
-  } else {
-    return { type: selectedScopeType };
+  switch (selectedScopeType) {
+    case ScopeType.SELECT: {
+      const workspaces = await runWorkspacesSelectPrompt();
+      return {
+        kind: selectedScopeType,
+        workspaces
+      };
+    }
+    case ScopeType.ALL:
+      return {
+        kind: selectedScopeType,
+        workspaces: await getWorkspaces()
+      };
+    case ScopeType.PROJECT:
+      return { kind: selectedScopeType };
   }
 }

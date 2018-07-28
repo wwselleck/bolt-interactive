@@ -1,4 +1,4 @@
-import { Dependency, toWorkspaceAddOptions, workspaceAdd } from "bolt";
+import { Dependency } from "bolt";
 
 export enum configDependencyType {
   DEPENDENCIES = "dependencies",

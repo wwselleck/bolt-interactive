@@ -1,11 +1,8 @@
 import {
   projectRemove,
-  Workspace,
   workspaceRemove,
   workspacesRemove
 } from "bolt";
-import inquirer = require("inquirer");
-import { configDependencyType, toDependency } from "../../bolt";
 import runPackagesInputPrompt from '../packagesInput';
 import runScopeSelectPrompt, { ScopeType } from "../scopeSelect";
 
@@ -17,16 +14,16 @@ export default async function runRemovePrompt() {
 
   const packages: string[] = packagesInput.split(" ");
 
-  if (scope.type === ScopeType.PROJECT) {
+  if (scope.kind === ScopeType.PROJECT) {
     await projectRemove({
       deps: packages
     });
-  } else if (scope.type === ScopeType.ALL) {
+  } else if (scope.kind === ScopeType.ALL) {
     await workspacesRemove({
       deps: packages,
       filterOpts: {}
     });
-  } else if (scope.type === ScopeType.SELECT) {
+  } else if (scope.kind === ScopeType.SELECT) {
     for (const w of scope.workspaces) {
       await workspaceRemove({
         pkgName: w.name,
