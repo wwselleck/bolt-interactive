@@ -1,4 +1,3 @@
-import { Workspace } from "bolt";
 import inquirer = require("inquirer");
 import runAddPrompt from "./commands/add";
 import runRemovePrompt from "./commands/remove";
@@ -36,5 +35,5 @@ export default async function runCommandSelectPrompt() {
   ]);
 
   const command: Prompt = answers.command;
-  command();
+  return command();
 }

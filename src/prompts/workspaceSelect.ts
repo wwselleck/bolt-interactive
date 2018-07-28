@@ -20,7 +20,7 @@ export default async function runWorkspacesSelectPrompt(): Promise<
       name: "workspaces",
       message: "Select workspaces",
       searchable: true,
-      async source(answersSoFar, input = "") {
+      async source(_, input = "") {
         input = input || "";
         const results = fuzzy
           .filter(input, choices, {

@@ -1,8 +1,11 @@
 {
-  "name": "foo-workspace-package",
+  "name": "foo",
   "version": "1.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "build": "echo foo build",
+    "lint": "echo foo lint"
+  },
   "bolt": {
     "workspaces": [
       "packages/*"

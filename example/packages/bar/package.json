@@ -1,8 +1,12 @@
 {
-  "name": "bar-workspace-package",
+  "name": "bar",
   "version": "1.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "build": "echo bar build",
+    "run": "echo bar run",
+    "lint": "echo bar lint"
+  },
   "dependencies": {
   }
 }
