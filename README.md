@@ -15,6 +15,7 @@ bolti
 | add         | ✅      |✅              | ✅
 | remove      | ✅      |✅              | ✅
 | upgrade     | ✅      |✅              | n/a
+| run         | ✅      |✅              | ✅
 
 ![](./docs/example.gif)
 ### Development
